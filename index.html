@@ -1,0 +1,1577 @@
+<!DOCTYPE html><html lang="pt-BR"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Takealot</title>
+
+<script
+  src="https://cdn.utmify.com.br/scripts/utms/latest.js"
+  data-utmify-prevent-xcod-sck
+  data-utmify-prevent-subids
+  async
+  defer>
+</script>
+
+<!-- Swiper CSS -->
+<link rel="stylesheet" href="css/swiper-bundle.min.css">
+
+<style>
+  :root {
+    --bg: #ffffff;
+    --text: #444444;
+    --border: #e6e6e6;
+    --gap: 16px;
+    --height: 64px;
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    background: #fff;
+    color: var(--text);
+  }
+
+  /* ====== TOPO ====== */
+  .topbar-wrap {
+    width: 100%;
+    border-bottom: 1px solid var(--border);
+    background: var(--bg);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+  }
+
+  .topbar {
+    max-width: 1200px;
+    margin: 0 auto;
+    height: var(--height);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 var(--gap);
+    position: relative;
+  }
+
+  .left, .right {
+    display: flex;
+    align-items: center;
+  }
+
+  .menu-btn, .icon-btn {
+    width: 40px;
+    height: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border: none;
+    background: none;
+  }
+
+  .center {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .brand img {
+    height: 36px;
+    width: auto;
+    display: block;
+  }
+
+  .right {
+    gap: 10px;
+  }
+
+  /* ====== GALERIA ====== */
+  .page-container {
+    margin-top: 100px; /* espaço abaixo do topo fixo */
+    display: flex;
+    justify-content: center;
+    padding: 0 16px;
+  }
+
+  .product-gallery {
+    position: relative;
+    width: 520px;
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  }
+
+  .discount-badge {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    background-color: #1d75cf;
+    color: #fff;
+    font-weight: 700;
+    font-size: 18px;
+    border-radius: 6px;
+    padding: 10px 14px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .swiper {
+    width: 100%;
+    height: auto;
+  }
+
+  .swiper-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #fff;
+  }
+
+  .image-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+
+  .image-box img {
+    width: 100%;
+    height: auto;
+    max-height: 600px;
+    object-fit: contain;
+    user-select: none;
+  }
+
+  /* ====== PAGINAÇÃO ====== */
+  .swiper-pagination {
+    position: relative;
+    bottom: 10px;
+    margin-top: 10px;
+    text-align: center;
+  }
+
+  .swiper-pagination-bullet {
+    width: 10px;
+    height: 10px;
+    background: #d1d1d1;
+    opacity: 1;
+    margin: 0 4px !important;
+    transition: all 0.3s ease;
+  }
+
+  .swiper-pagination-bullet-active {
+    background: #1d75cf;
+    transform: scale(1.2);
+  }
+
+  /* ====== RESPONSIVIDADE ====== */
+
+  /* Tablets (entre 600 e 900px) */
+  @media (max-width: 900px) {
+    .product-gallery {
+      width: 80%;
+    }
+
+    .discount-badge {
+      font-size: 16px;
+      padding: 8px 12px;
+    }
+
+    .image-box img {
+      max-height: 450px;
+    }
+  }
+
+  /* Celulares (até 600px) */
+  @media (max-width: 600px) {
+    :root {
+      --height: 56px;
+    }
+
+    .topbar {
+      height: var(--height);
+      padding: 0 10px;
+    }
+
+    .brand img {
+      height: 30px;
+    }
+
+    .menu-btn, .icon-btn {
+      width: 34px;
+      height: 34px;
+    }
+
+    .product-gallery {
+      width: 100%;
+      box-shadow: none;
+    }
+
+    .discount-badge {
+      font-size: 14px;
+      padding: 6px 10px;
+      top: 10px;
+      left: 10px;
+    }
+
+    .image-box img {
+      max-height: 380px;
+    }
+
+    .swiper-pagination-bullet {
+      width: 8px;
+      height: 8px;
+    }
+  }
+</style>
+<script> window.pixelId = "68f6b337fc5bd2b82f8144bb"; var a = document.createElement("script"); a.setAttribute("async", ""); a.setAttribute("defer", ""); a.setAttribute("src", "https://cdn.utmify.com.br/scripts/pixel/pixel.js"); document.head.appendChild(a); </script></head>
+
+<body>
+
+<!-- =============== TOPO =============== -->
+<header class="topbar-wrap">
+  <div class="topbar">
+    <div class="left">
+      <button class="menu-btn" aria-label="Menu">
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="16" viewBox="0 0 22 16" fill="none">
+          <rect y="0" width="22" height="2" rx="1" fill="#444"></rect>
+          <rect y="7" width="22" height="2" rx="1" fill="#444"></rect>
+          <rect y="14" width="22" height="2" rx="1" fill="#444"></rect>
+        </svg>
+      </button>
+    </div>
+
+    <div class="center">
+      <a href="#" class="brand" aria-label="Takealot logo">
+        <img src="https://www.takealot.com/c0faa5626273a044242e32c75bd54775b6eb9627/static/media/src/images/logo.svg-f6ccb489b85bbddf97d6.svg" alt="Takealot Logo">
+      </a>
+    </div>
+
+    <div class="right">
+      <button class="icon-btn" aria-label="Pesquisar">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none">
+          <circle cx="11" cy="11" r="6" stroke="#444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></circle>
+          <line x1="20" y1="20" x2="16.65" y2="16.65" stroke="#444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></line>
+        </svg>
+      </button>
+      <button class="icon-btn" aria-label="Carrinho">
+        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24'%3E%3Cpath fill='rgb(0,0,0)' d='M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z'/%3E%3C/svg%3E" alt="Carrinho" width="20" height="20">
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- =============== GALERIA =============== -->
+<div class="page-container">
+  <div class="product-gallery">
+    <div class="discount-badge">
+      <span>83%</span><span>OFF</span>
+    </div>
+
+    <div class="swiper mySwiper">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide"><div class="image-box"><img src="images/imagem1.png" alt="Produto 1"></div></div>
+        <div class="swiper-slide"><div class="image-box"><img src="images/imagem2.png" alt="Produto 2"></div></div>
+        <div class="swiper-slide"><div class="image-box"><img src="images/imagem3.png" alt="Produto 3"></div></div>
+        <div class="swiper-slide"><div class="image-box"><img src="images/imagem4.png" alt="Produto 4"></div></div>
+        <div class="swiper-slide"><div class="image-box"><img src="images/imagem5.png" alt="Produto 5"></div></div>
+        <div class="swiper-slide"><div class="image-box"><img src="images/imagem6.png" alt="Produto 6"></div></div>
+        <div class="swiper-slide"><div class="image-box"><img src="images/imagem7.png" alt="Produto 7"></div></div>
+        <div class="swiper-slide"><div class="image-box"><img src="images/imagem8.png" alt="Produto 8"></div></div>
+        <div class="swiper-slide"><div class="image-box"><img src="images/imagem9.png" alt="Produto 9"></div></div>
+      </div>
+      <div class="swiper-pagination"></div>
+    </div>
+  </div>
+</div>
+<div class="section-divider bottom-divider"></div>
+<!-- Swiper JS -->
+<script src="js/swiper-bundle.min.js"></script>
+<script>
+  const swiper = new Swiper(".mySwiper", {
+    slidesPerView: 1,
+    spaceBetween: 10,
+    allowTouchMove: true,
+    loop: false,
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+    },
+  });
+</script>
+
+
+
+  <h1 class="product-title">
+  Berlinger Haus 15-Piece Titan Pro Non-Stick Coating Cookware Set - Leonardos
+  </h1>
+
+  <a href="#" class="brand-link">Berlinger Haus</a>
+
+  <p class="product-desc">
+   Black November 🎉🥳
+  </p>
+
+  <div class="product-rating">
+    <span class="star">★</span>
+    <span class="rating-value">4.9</span>
+    <a href="#" class="reviews-link">13 Reviews</a>
+  </div>
+
+  <div class="price-section">
+    <div class="current-price">R 497</div>
+    <div class="old-price">R 2,999</div>
+    <span class="info-icon" title="Preço original">i</span>
+  </div>
+
+  <div class="delivery-section">
+    <span class="delivery-label">Estimated Delivery</span>
+    <span class="delivery-tag">CPT</span> <span class="delivery-tag">DBN</span> <span class="delivery-tag">JHB</span>
+    <div class="delivery-dates">
+      16 November - 22 November <a href="#" class="terms-link">T&Cs Apply</a>
+    </div>
+  </div>
+
+  <div class="free-delivery" style="margin-bottom: 16px;">
+  FREE DELIVERY WITH <a href="#" class="takealotmore-link">TAKEALOTMORE</a>
+</div>
+
+
+<style>
+.product-info {
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial;
+  max-width: 480px;
+  margin-left: 40px;
+  padding: 10px 0;
+  color: #333;
+}
+
+.product-title {
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.4;
+  color: #222;
+}
+
+.brand-link {
+  display: inline-block;
+  margin: 4px 0 8px 0;
+  color: #0077cc;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.brand-link:hover { text-decoration: underline; }
+
+.product-desc {
+  color: #666;
+  font-size: 14px;
+  line-height: 1.5;
+  margin-bottom: 12px;
+}
+
+.product-rating {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-bottom: 16px;
+}
+
+.star {
+  color: #f7b500;
+  font-size: 18px;
+}
+
+.rating-value {
+  font-weight: 600;
+  color: #333;
+  margin-right: 4px;
+}
+
+.reviews-link {
+  color: #0077cc;
+  font-size: 14px;
+  text-decoration: none;
+}
+.reviews-link:hover { text-decoration: underline; }
+
+.price-section {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.current-price {
+  font-size: 28px;
+  font-weight: 700;
+  color: #222;
+}
+
+.old-price {
+  font-size: 16px;
+  color: #999;
+  text-decoration: line-through;
+}
+
+.info-icon {
+  display: inline-block;
+  font-size: 12px;
+  background: #f2f2f2;
+  color: #666;
+  border-radius: 50%;
+  width: 16px;
+  height: 16px;
+  text-align: center;
+  line-height: 16px;
+  cursor: default;
+}
+
+.delivery-section {
+  margin-top: 16px;
+  font-size: 14px;
+  color: #333;
+}
+
+.delivery-label {
+  color: #777;
+  margin-right: 6px;
+}
+
+.delivery-tag {
+  display: inline-block;
+  background: #e0e0e0;
+  color: #555;
+  border-radius: 4px;
+  padding: 2px 6px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.delivery-dates {
+  margin-top: 6px;
+  font-weight: 500;
+}
+
+.terms-link {
+  color: #0077cc;
+  text-decoration: none;
+}
+.terms-link:hover { text-decoration: underline; }
+
+.free-delivery {
+  border: 1px dashed #ddd;
+  border-radius: 4px;
+  padding: 12px;
+  margin-top: 20px;
+  font-size: 14px;
+  color: #333;
+  text-align: center;
+}
+
+.takealotmore-link {
+  color: #0077cc;
+  font-weight: 600;
+  text-decoration: none;
+}
+.takealotmore-link:hover { text-decoration: underline; }
+
+/* ==== Responsividade ==== */
+@media (max-width: 900px) {
+  .product-info {
+    max-width: 100%;
+    margin: 20px auto;
+    padding: 0 16px;
+  }
+}
+</style>
+<!-- ========== ETAPA 4 (BLOCOS COM BARRAS SEPARADORAS) ========== -->
+<section class="seller-section">
+  <!-- Barra superior -->
+  <div class="section-divider"></div>
+
+  <!-- Seller Info -->
+  <div class="seller-info">
+    <p>
+      Sold by <a href="#">Trade Success</a> • VAT Registered
+      <span class="info-icon">i</span>
+    </p>
+  </div>
+
+  <!-- Seller Score -->
+  <div class="seller-score-box">
+    <div class="seller-score">
+      <span>Seller Score</span>
+      <span class="info-icon">i</span>
+    </div>
+    <div class="seller-rating">
+      <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#1d75cf" viewBox="0 0 24 24">
+        <path d="M12 .587l3.668 7.425L24 9.748l-6 5.848 1.417 8.268L12 19.771l-7.417 4.093L6 15.596 0 9.748l8.332-1.736z"></path>
+      </svg>
+      <span>4.7 • 1.8k Reviews</span>
+    </div>
+  </div>
+
+  <!-- Takealot Credit -->
+  <div class="credit-box">
+    <div class="credit-header">
+      <span class="credit-logo"><strong>takealot</strong>.credit</span>
+    </div>
+    <p>
+      Buy using <strong>takealot.credit</strong> for <strong>R 503 p/m × 12 months</strong> and get 1% of your purchase back*. 
+      <a href="#">More Credit Options</a>
+    </p>
+  </div>
+
+  <!-- Rewards -->
+  <div class="reward-box">
+    <div class="reward-item">
+      <img src="images/ebucks-logo-%403x.svg" alt="eBucks Logo">eB53,990
+    </div>
+    <div class="reward-item">
+      <img src="images/discovery-miles-logo.svg" alt="Discovery Miles Logo">
+      <span>53,990</span>
+    </div>
+  </div>
+
+  <!-- Barra inferior -->
+  <div class="section-divider bottom-divider"></div>
+</section>
+
+<style>
+/* ====== BASE ====== */
+body {
+  margin: 0;
+  background: #fff;
+}
+.seller-section {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  color: #333;
+  max-width: 480px;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 0 auto;
+  padding: 0 10px 16px;
+  position: relative;
+}
+
+/* ====== BARRAS SEPARADORAS ====== */
+.section-divider {
+  position: relative;
+  left: 50%;
+  width: 100vw;
+  height: 6px;
+  background: #f3f3f3;
+  border-top: 1px solid #e0e0e0;
+  transform: translateX(-50%);
+}
+.bottom-divider {
+  margin-top: 10px;
+}
+
+/* ====== SELLER INFO ====== */
+.seller-info p {
+  font-size: 14px;
+  color: #555;
+  line-height: 1.4;
+}
+.seller-info a {
+  color: #1d75cf;
+  text-decoration: none;
+  font-weight: 500;
+}
+.info-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 15px;
+  height: 15px;
+  font-size: 11px;
+  background: #f0f0f0;
+  border-radius: 50%;
+  color: #555;
+  margin-left: 4px;
+  cursor: pointer;
+}
+
+/* ====== SELLER SCORE ====== */
+.seller-score-box {
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.seller-score {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 14px;
+  font-weight: 500;
+}
+.seller-rating {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: #555;
+  font-size: 14px;
+  margin-top: 6px;
+}
+.seller-rating svg {
+  margin-top: -1px;
+}
+
+/* ====== TAKEALOT CREDIT ====== */
+.credit-box {
+  border: 1px solid #eee;
+  border-radius: 8px;
+  padding: 14px;
+  background: #fafafa;
+}
+.credit-logo {
+  font-size: 15px;
+  color: #1d75cf;
+}
+.credit-box p {
+  font-size: 14px;
+  color: #555;
+  line-height: 1.4;
+  margin-top: 4px;
+}
+.credit-box a {
+  color: #1d75cf;
+  text-decoration: none;
+}
+
+/* ====== REWARD BOX ====== */
+.reward-box {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.reward-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  padding: 10px 14px;
+  background: #fff;
+}
+.reward-item img {
+  height: 22px;
+  width: auto;
+}
+.reward-item span {
+  font-size: 15px;
+  font-weight: 500;
+  color: #333;
+}
+
+/* ====== RESPONSIVO ====== */
+@media (max-width: 600px) {
+  .seller-section {
+    padding: 0 8px 14px;
+    gap: 10px;
+  }
+  .seller-info p {
+    font-size: 13px;
+  }
+  .seller-score-box {
+    padding: 8px 12px;
+  }
+  .seller-score span,
+  .seller-rating span {
+    font-size: 13px;
+  }
+  .credit-box {
+    padding: 12px;
+  }
+  .credit-box p {
+    font-size: 13px;
+  }
+  .reward-item {
+    padding: 8px 12px;
+  }
+  .reward-item span {
+    font-size: 14px;
+  }
+}
+</style>
+<!-- ========== BLOCO: In stock / Delivery / Returns / Warranty ========== -->
+<section class="stock-section" aria-labelledby="stock-title">
+<div class="stock-header">
+    <h2 id="stock-title">
+      In stock
+      <span class="stock-badge">JHB</span>
+      <a href="#" class="learn-more">Learn More</a>
+    </h2>
+  </div>
+  <ul class="stock-list" role="list">
+    <li class="stock-item">
+      <div class="left">
+        <!-- estrela oficial -->
+        <img class="icon" src="https://www.takealot.com/c0faa5626273a044242e32c75bd54775b6eb9627/static/media/src/images/icon-star.svg-fd610af858c50eaa4354.svg" alt="Star icon">
+        <span class="text">Eligible for next-day delivery or collection.</span>
+      </div>
+      <button class="info-btn" aria-label="Mais informações sobre envio">
+        <img src="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 fill=%22rgb(77,77,79)%22 width=%2215%22 height=%2215%22 viewBox=%220 0 24 24%22%3E%3Cpath d=%22M0 0h24v24H0z%22 fill=%22none%22/%3E%3Cpath d=%22M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z%22/%3E%3C/svg%3E" alt="info">
+      </button>
+    </li>
+
+    <li class="stock-item">
+      <div class="left">
+        <!-- caminhão oficial -->
+        <img class="icon" src="https://www.takealot.com/c0faa5626273a044242e32c75bd54775b6eb9627/static/media/src/images/icon-truck.svg-5138ca5440ee2661fa2b.svg" alt="Truck icon">
+        <span class="text"><strong>Free Delivery Available.</strong></span>
+      </div>
+      <div class="spacer"></div>
+    </li>
+
+    <li class="stock-item">
+      <div class="left">
+        <!-- ícone undo oficial -->
+        <img class="icon" src="https://www.takealot.com/c0faa5626273a044242e32c75bd54775b6eb9627/static/media/src/images/icon-undo.svg-10e2a13c437d176d5b70.svg" alt="Returns icon">
+        <span class="text">Hassle-Free Exchanges & Returns for 30 Days.</span>
+      </div>
+      <button class="info-btn" aria-label="Mais informações sobre devoluções">
+        <img src="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 fill=%22rgb(77,77,79)%22 width=%2215%22 height=%2215%22 viewBox=%220 0 24 24%22%3E%3Cpath d=%22M0 0h24v24H0z%22 fill=%22none%22/%3E%3Cpath d=%22M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z%22/%3E%3C/svg%3E" alt="info">
+      </button>
+    </li>
+
+    <li class="stock-item">
+      <div class="left">
+        <!-- ícone calendário oficial -->
+        <img class="icon" src="https://www.takealot.com/c0faa5626273a044242e32c75bd54775b6eb9627/static/media/src/images/icon-calendar.svg-d00e447621b8412f5470.svg" alt="Calendar icon">
+        <span class="text">24-Month Limited Warranty.</span>
+      </div>
+      <button class="info-btn" aria-label="Mais informações sobre garantia">
+        <img src="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 fill=%22rgb(77,77,79)%22 width=%2215%22 height=%2215%22 viewBox=%220 0 24 24%22%3E%3Cpath d=%22M0 0h24v24H0z%22 fill=%22none%22/%3E%3Cpath d=%22M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z%22/%3E%3C/svg%3E" alt="info">
+      </button>
+    </li>
+  </ul>
+
+  <div class="separator-bar"></div>
+</section>
+
+<style>
+.stock-section {
+  max-width: 520px;
+  margin: 0 auto;
+  background: #fff;
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial;
+  color: #333;
+  padding: 0 12px;
+}
+
+/* Header */
+.stock-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 2px 8px;
+}
+.stock-header h2 {
+  font-size: 20px;
+  font-weight: 700;
+  color: #111;
+}
+.stock-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.stock-badge {
+  background: #ededed;
+  color: #333;
+  font-weight: 700;
+  font-size: 12px;
+  padding: 3px 8px;
+  border-radius: 4px;
+}
+.learn-more {
+  color: #1d75cf;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+/* List */
+.stock-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.stock-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 2px;
+  gap: 12px;
+  border-bottom: 1px dashed #d9d9d9;
+}
+.stock-item:last-child {
+  border-bottom: none;
+  padding-bottom: 14px;
+}
+
+/* Left icon + text */
+.left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+  min-width: 0;
+}
+.icon {
+  width: 20px;
+  height: 20px;
+}
+.text {
+  color: #555;
+  font-size: 15px;
+  line-height: 1.3;
+}
+.info-btn {
+  background: transparent;
+  border: none;
+  padding: 4px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.info-btn img {
+  width: 15px;
+  height: 15px;
+}
+
+/* Mobile adjustments */
+@media (max-width: 480px) {
+  .stock-section { padding: 0 10px; }
+  .stock-header h2 { font-size: 18px; }
+  .stock-badge { font-size: 11px; padding: 2px 7px; }
+  .text { font-size: 14px; }
+  .icon { width: 18px; height: 18px; }
+  .info-btn img { width: 14px; height: 14px; }
+}
+</style>
+ <div class="section-divider bottom-divider"></div>
+ <div class="floating-cart">
+  <div class="price">Price: <span class="currency">R 497</span></div>
+
+  <a href="https://t.co/O30un99azP" class="add-cart-btn">
+    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24'%3E%3Cpath fill='white' d='M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z'/%3E%3C/svg%3E" alt="cart icon">
+    <span>Buy Now</span>
+  </a>
+</div>
+
+<style>
+.floating-cart {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: white;
+  border-top: 1px solid #e0e0e0;
+  box-shadow: 0 -1px 5px rgba(0,0,0,0.05);
+  padding: 12px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 999;
+}
+
+.price {
+  font-weight: 600;
+  font-size: 16px;
+  color: #444;
+}
+
+.currency {
+  font-weight: 700;
+  color: #000;
+}
+
+/* Botão mais comprido */
+.add-cart-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: #23843d;
+  color: #fff;
+  font-weight: 600;
+  font-size: 16px;
+  border: none;
+  border-radius: 40px;
+  padding: 16px 50px; /* aumentei largura */
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.1s ease;
+  text-decoration: none;
+}
+
+/* Hover e clique */
+.add-cart-btn:hover {
+  background: #1f7637;
+}
+
+.add-cart-btn:active {
+  transform: scale(0.97);
+  background: #1c6a31;
+}
+
+.add-cart-btn img {
+  width: 18px;
+  height: 18px;
+  vertical-align: middle;
+}
+</style>
+<div class="description-section">
+  <h2 class="description-title">Description</h2>
+
+  <div class="video-container">
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/yha5-grKe-I" title="Max Suction, Slim Design - Tapo RV20" frameborder="0" allowfullscreen=""></iframe>
+</div>
+  <div class="description-content" id="description-content">
+    <h3></h3>
+   <ul>
+  <li><strong>Introducing:</strong> The Leonardo Collection 15-Piece Cookware Set by Berlinger Haus - Crafted to redefine your kitchen experience with unparalleled performance and timeless elegance.</li>
+  <li><strong>Sophisticated Design:</strong> Matte finish, minimalist style, and ergonomic soft-touch handles for comfort and control under high heat.</li>
+  <li><strong>Durable Construction:</strong> Forged aluminum with triple-layer Titan Pro non-stick coating for easy cleanup and long-lasting use.</li>
+  <li><strong>Tempered Glass Lids:</strong> Soft-close, heat-resistant silicone system with steam holes for precise temperature control.</li>
+  <li><strong>Turbo Induction Compatible:</strong> Suitable for gas, electric, ceramic, halogen, and induction hobs.</li>
+  <li><strong>Eco-Friendly & Safe:</strong> Free from PFOA, lead, and cadmium.</li>
+  <li><strong>Cooking Tips:</strong> Use low to medium flame, avoid metal utensils on non-stick surfaces, and clean carefully to preserve coating quality.</li>
+  <li><strong>Set Includes:</strong>
+    <ul>
+      <li><strong>Deep Frypan:</strong> 24x6.5 cm (2.3L)</li>
+      <li><strong>Frypan:</strong> 28x5.2 cm (2.4L)</li>
+      <li><strong>Casserole with lid:</strong> 20x10.4 cm (2.5L)</li>
+      <li><strong>Casserole with lid:</strong> 24x11.8 cm (4.1L)</li>
+      <li><strong>Casserole with lid:</strong> 28x12.4 cm (6.1L)</li>
+      <li><strong>Saucepan with lid:</strong> 16x7.5 cm (1.2L)</li>
+      <li><strong>3 Kitchen Tools:</strong> slotted turner, spaghetti ladle, soup ladle</li>
+      <li><strong>2 Black Bakelite Mats:</strong> Protects surfaces and countertops</li>
+    </ul>
+  </li>
+  <li><strong>Care & Maintenance:</strong> Avoid stacking cookware, wipe spills immediately, hand wash lids, and do not use metallic scrubbers.</li>
+  <li><strong>Warranty & Safety Notice:</strong> Do not expose cookware directly to high flames, as paint damage is not covered under warranty.</li>
+</ul>
+
+
+    <h3>Tech Spec</h3>
+    <p>
+      MagSlim LiDAR + IMU Dual Navigation, Vacuum & Mop 2-in-1, 5300Pa, 3L Auto-Empty Dock (17000Pa, 95%+ Dust Removal Rate), 3hrs one time working hour, 250ml Dustbin, 300ml Water Tank, 8.3cm Ultra-thin, 5-Level Suction, 3-Level Water Flow, Smart Dust Collection, 2 months without Emptying, 3+1 Local Maps, 22mm Barrier-Cross Height, Anti-Drop Protection, HEPA Filter, Carpet Model, Custom Cleaning, Scheduled Cleaning, Spot Cleaning, Virtual Walls, No-Go Zones, Customized Alexa and Google Assistant Voice Control, Tapo APP.
+    </p>
+
+    <h3>What's in the Box</h3>
+    <ul>
+      <li>Robot Vacuum Cleaner ×1 (Includes HEPA Filter ×1 and Side Brush ×1)</li>
+      <li>Auto-Empty Dock ×1 (Includes 3L Disposable Dust Bag ×1 and Cleaning Brush ×1)</li>
+      <li>Mopping Attachment ×1</li>
+      <li>Power Cable ×1</li>
+      <li>User Manual</li>
+    </ul>
+  </div>
+
+  <button class="show-more-btn" id="show-more-btn">Show More</button>
+</div>
+
+<style>
+.description-section {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  font-family: "Arial", sans-serif;
+}
+
+.description-title {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.video-container {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%;
+  overflow: hidden;
+  border-radius: 8px;
+  margin-bottom: 16px;
+}
+
+.video-container iframe {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  border-radius: 8px;
+}
+
+.description-content {
+  max-height: 150px;
+  overflow: hidden;
+  transition: max-height 0.5s ease;
+  color: #333;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.description-content.expanded {
+  max-height: 2000px;
+}
+
+.show-more-btn {
+  display: block;
+  width: 100%;
+  background: #fff;
+  border: 2px solid #555;
+  border-radius: 40px;
+  padding: 12px 20px;
+  font-weight: 700;
+  color: #333;
+  cursor: pointer;
+  text-align: center;
+  font-size: 16px;
+  margin-top: 10px;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.show-more-btn:hover {
+  background: #f7f7f7;
+}
+
+.description-content h3 {
+  margin-top: 16px;
+  margin-bottom: 8px;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.description-content ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.description-content li {
+  margin-bottom: 6px;
+}
+</style>
+
+<script>
+const showMoreBtn = document.getElementById('show-more-btn');
+const descriptionContent = document.getElementById('description-content');
+
+showMoreBtn.addEventListener('click', () => {
+  descriptionContent.classList.toggle('expanded');
+  showMoreBtn.textContent = descriptionContent.classList.contains('expanded')
+    ? 'Show Less'
+    : 'Show More';
+});
+</script>
+<div class="section-divider bottom-divider"></div>
+<!-- ======== TOP BANNER ======== -->
+<a href="https://www.takealot.com/promotion/114176" class="top-banner" target="_blank" rel="noopener">
+  <img src="images/114176-top-banner-mobile.png" alt="Takealot Promotion Banner" class="top-banner-img">
+</a>
+
+<style>
+.top-banner {
+  display: block;
+  width: 100%;
+  overflow: hidden;
+  text-decoration: none;
+  margin-bottom: 16px; /* espaçamento abaixo conforme layout */
+}
+
+.top-banner-img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+  
+/* Ajustes para garantir boa visualização em mobile/tablet */
+@media (max-width: 768px) {
+  .top-banner {
+    margin-bottom: 12px;
+  }
+}
+</style>
+
+
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Show More / Show Less (Funcional)</title>
+<style>
+body {
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial;
+  background: #f7f7f7;
+  margin: 0;
+  padding: 20px;
+}
+.product-info {
+  max-width: 700px;
+  margin: auto;
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 16px;
+}
+.product-info h2 {
+  margin-top: 0;
+  font-size: 20px;
+  font-weight: 700;
+}
+.info-wrapper {
+  position: relative;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+}
+.info-wrapper.collapsed {
+  max-height: 220px; /* altura visível quando recolhido */
+}
+.fade {
+  position: absolute;
+  bottom: 0;
+  left: 0; right: 0;
+  height: 60px;
+  background: linear-gradient(to bottom, rgba(255,255,255,0) 0%, #fff 80%);
+  transition: opacity 0.3s ease;
+}
+.info-wrapper.expanded .fade {
+  opacity: 0;
+  pointer-events: none;
+}
+.toggle-btn {
+  display: block;
+  width: 100%;
+  margin-top: 14px;
+  padding: 12px;
+  background: #fff;
+  border: 2px solid #555;
+  border-radius: 40px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.toggle-btn:hover {
+  background: #f4f4f4;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+th, td {
+  text-align: left;
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+  font-size: 15px;
+}
+th {
+  width: 35%;
+  background: #fafafa;
+  color: #555;
+}
+</style>
+<style>
+  /* teu CSS atual aqui */
+
+  html, body {
+    background-color: #ffffff !important;
+  }
+</style>
+
+
+
+
+
+
+<section class="product-info">
+  <h2>Product Information</h2>
+  <div id="info-wrapper" class="info-wrapper collapsed">
+    <table>
+      <tbody>
+        <tr><th>Category</th><td>Home & Home & Kitchen / Homeware / Kitchen / Cookware / Pots & Pans / Pan Sets </td></tr>
+        <tr><th>Brand</th><td>Berlinger Haus</td></tr>
+        <tr><th>Warranty</th><td>Limited (12 months)</td></tr>
+        <tr><th>Materials</th><td>Aluminum</td></tr>
+        <tr><th>Non-Stick</th><td>Yes</td></tr>
+        <tr><th>Cookware Type</th><td>Pot Set</td></tr>
+        <tr><th>Number Of Pieces</th><td>15</td></tr>
+        <tr><th>What's in the box</th><td>1 x Deep frypan: 24x6,5 cm 2,3L
+1 x Frypan: 28x5,2cm 2,4L
+1 x Casserole with lid: 20x10,4 cm 2,5L
+1 x Casserole with lid: 24x11,8 cm 4,1L
+1 x Casserole with lid: 28x12,4 cm 6,1L
+1 x Sauce pan with lid: 16x7,5 cm 1,2L
+3 x kitchen tools (slotted turner, spaghetti ladle, soup ladle)
+2 x black bakelite MATs</td></tr>
+        <tr><th>Dishwasher Safe</th><td>Yes</td></tr>
+        <tr><th>Barcode</th><td>5999108468445</td></tr>
+      </tbody>
+    </table>
+    <div class="fade"></div>
+  </div>
+
+  <button id="toggle-btn" class="toggle-btn">Show More</button>
+</section>
+
+<script>
+const wrapper = document.getElementById("info-wrapper");
+const btn = document.getElementById("toggle-btn");
+
+btn.addEventListener("click", () => {
+  const expanded = wrapper.classList.toggle("expanded");
+  if (expanded) {
+    wrapper.style.maxHeight = wrapper.scrollHeight + "px";
+    wrapper.classList.remove("collapsed");
+    btn.textContent = "Show Less";
+  } else {
+    wrapper.style.maxHeight = "220px";
+    wrapper.classList.add("collapsed");
+    btn.textContent = "Show More";
+  }
+});
+</script>
+
+
+
+
+
+<section class="reviews-section">
+  <div class="reviews-header">
+    <h3>Reviews</h3>
+    <div class="overall-rating">
+      <span class="star">★</span>
+      <span class="rating-value">4.9</span>
+      <span class="reviews-count">13 reviews</span>
+    </div>
+  </div>
+
+  <div class="reviews-carousel">
+    <!-- Review 1 -->
+    <div class="review-card">
+      <div class="review-header">
+        <div class="review-user">Zikhona - <span>15 Jul 2025</span></div>
+        <div class="review-stars">
+          <span class="star">★</span> <span class="score">5</span> <span class="likes">(👍 10)</span>
+        </div>
+      </div>
+      <p class="review-text">Best value for money purchase. Makes cooking easy
+    </p></div>
+
+    <!-- Review 2 -->
+    <div class="review-card">
+      <div class="review-header">
+        <div class="review-user">Luke - <span>12 Jul 2025</span></div>
+        <div class="review-stars">
+          <span class="star">★</span> <span class="score">5</span> <span class="likes">(👍 8)</span>
+        </div>
+      </div>
+      <p class="review-text">I bought this for wifey as a replacement for her old pots and pans. She was quite overwhelmed and extremely happy. HAPPY WIFE, HAPPY LIFE!💝</p>
+      <a href="#" class="read-more">Read More</a>
+    </div>
+
+    <!-- Review 3 -->
+    <div class="review-card">
+      <div class="review-header">
+        <div class="review-user">Sarah - <span>10 Jul 2025</span></div>
+        <div class="review-stars">
+          <span class="star">★</span> <span class="score">5</span> <span class="likes">(👍 6)</span>
+        </div>
+      </div>
+      <p class="review-text">Beautiful set , modern matte finish , non stick. I recommend this brand 👌🏽💯
+
+Helpful
+3 items in cart(
+3
+)
+</p>
+      <a href="#" class="read-more">Read More</a>
+    </div>
+
+    <!-- Review 4 -->
+    <div class="review-card">
+      <div class="review-header">
+        <div class="review-user">Lisa - <span>5 Jul 2025</span></div>
+        <div class="review-stars">
+          <span class="star">★</span> <span class="score">4.5</span> <span class="likes">(👍 4)</span>
+        </div>
+      </div>
+      <p class="review-text">I happy with the choice I made to buy the pots to complement my kitchen.. When we talk non stick this is the definition. Perfect for my cooking and kitchen.. It's recommended..</p>
+      <a href="#" class="read-more">Read More</a>
+    </div>
+
+    <!-- Review 5 -->
+    <div class="review-card">
+      <div class="review-header">
+        <div class="review-user">Zikhona - <span>2 Jul 2025</span></div>
+        <div class="review-stars">
+          <span class="star">★</span> <span class="score">5</span> <span class="likes">(👍 12)</span>
+        </div>
+      </div>
+      <p class="review-text">Bought them for my neighbour and they can’t stop raving about them. All the items were delivered without any defect and as advertised. Overall happiness and would recommend to others.</p>
+      <a href="#" class="read-more">Read More</a>
+    </div>
+
+    <!-- Review 6 -->
+    <div class="review-card">
+      <div class="review-header">
+        <div class="review-user">Janet - <span>29 Jun 2025</span></div>
+        <div class="review-stars">
+          <span class="star">★</span> <span class="score">5</span> <span class="likes">(👍 3)</span>
+        </div>
+      </div>
+      <p class="review-text">The best buy I have ever had,the pots are non stick indeed,nothing can be burnt cooked from this pots.not to mention how beautiful the pots are!I don’t regret buying them!</p>
+      <a href="#" class="read-more">Read More</a>
+    </div>
+
+    <!-- Review 7 -->
+    <div class="review-card">
+      <div class="review-header">
+        <div class="review-user">Tina - <span>25 Jun 2025</span></div>
+        <div class="review-stars">
+          <span class="star">★</span> <span class="score">4.8</span> <span class="likes">(👍 5)</span>
+        </div>
+      </div>
+      <p class="review-text">It doesn’t stick most foodstuffs but my daughter always get sticky eggs in the pan</p>
+      <a href="#" class="read-more">Read More</a>
+    </div>
+
+    <!-- Review 8 -->
+    <div class="review-card">
+      <div class="review-header">
+        <div class="review-user">Chris - <span>18 Jun 2025</span></div>
+        <div class="review-stars">
+          <span class="star">★</span> <span class="score">5</span> <span class="likes">(👍 9)</span>
+        </div>
+      </div>
+      <p class="review-text">The pots are a esthetically pleasing, cok like a dream and did I mention gorgeous. It's been a couple of weeks since purchase n clean up is a breeze.</p>
+      <a href="#" class="read-more">Read More</a>
+    </div>
+
+    <!-- Review 9 -->
+    <div class="review-card">
+      <div class="review-header">
+        <div class="review-user">Tawanda - <span>11 Jun 2025</span></div>
+        <div class="review-stars">
+          <span class="star">★</span> <span class="score">4.9</span> <span class="likes">(👍 7)</span>
+        </div>
+      </div>
+      <p class="review-text">Great vacuum. I use it daily and it always finds its way back to the dock. Battery life is solid.</p>
+      <a href="#" class="read-more">Read More</a>
+    </div>
+
+    <!-- Review 10 -->
+    <div class="review-card">
+      <div class="review-header">
+        <div class="review-user">Zuzeka- <span>7 Jun 2025</span></div>
+        <div class="review-stars">
+          <span class="star">★</span> <span class="score">5</span> <span class="likes">(👍 11)</span>
+        </div>
+      </div>
+      <p class="review-text">Love everything about this set.</p>
+      <a href="#" class="read-more">Read More</a>
+    </div>
+
+    <!-- Review 11 -->
+    <div class="review-card">
+      <div class="review-header">
+        <div class="review-user">Tsholofelo- <span>3 Jun 2025</span></div>
+        <div class="review-stars">
+          <span class="star">★</span> <span class="score">4.7</span> <span class="likes">(👍 4)</span>
+        </div>
+      </div>
+      <p class="review-text">These pots are the girls they think they are. The colour is woow, non stick indeed,the sizes are great. They make the kitchen standout. Absolutely love them. A definate value for money.</p>
+      <a href="#" class="read-more">Read More</a>
+    </div>
+
+    <!-- Review 12 -->
+    <div class="review-card">
+      <div class="review-header">
+        <div class="review-user">Samantha - <span>30 May 2025</span></div>
+        <div class="review-stars">
+          <span class="star">★</span> <span class="score">5</span> <span class="likes">(👍 13)</span>
+        </div>
+      </div>
+      <p class="review-text">I’m impressed by the design and suction. Even handles my dog’s fur easily!</p>
+      <a href="#" class="read-more">Read More</a>
+    </div>
+
+    <!-- Review 13 -->
+    <div class="review-card">
+      <div class="review-header">
+        <div class="review-user">Nomvuzo- <span>27 May 2025</span></div>
+        <div class="review-stars">
+          <span class="star">★</span> <span class="score">4.9</span> <span class="likes">(👍 6)</span>
+        </div>
+      </div>
+      <p class="review-text">Beautiful, handy features and efficient non-stick with relevant accessories. Variety of pot sizes including a small saucepan with spout.</p>
+      <a href="#" class="read-more">Read More</a>
+    </div>
+  </div>
+
+  <a href="#" class="view-all">View All</a>
+</section>
+
+<style>
+.reviews-section {
+  margin: 20px 0;
+  font-family: Arial, sans-serif;
+}
+
+.reviews-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.reviews-header h3 {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.overall-rating {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 14px;
+}
+
+.overall-rating .star {
+  color: #f5b301;
+  font-size: 16px;
+}
+
+.reviews-carousel {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  gap: 10px;
+  padding-bottom: 5px;
+}
+
+.review-card {
+  background: #f8f8f8;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  padding: 12px;
+  min-width: 85%;
+  scroll-snap-align: start;
+  box-sizing: border-box;
+}
+
+.review-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.review-user {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.review-user span {
+  color: #666;
+  font-weight: normal;
+}
+
+.review-stars {
+  font-size: 13px;
+  color: #333;
+}
+
+.review-stars .star {
+  color: #f5b301;
+}
+
+.review-stars .likes {
+  color: #666;
+  font-size: 12px;
+}
+
+.review-text {
+  font-size: 13px;
+  color: #444;
+  line-height: 1.4;
+  margin-bottom: 6px;
+}
+
+.read-more {
+  color: #007bff;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.read-more:hover {
+  text-decoration: underline;
+}
+
+.view-all {
+  display: block;
+  text-align: right;
+  font-size: 13px;
+  color: #007bff;
+  margin-top: 6px;
+  text-decoration: none;
+}
+
+.view-all:hover {
+  text-decoration: underline;
+}
+</style>
+<!-- =============== GOOGLE ADS BANNER =============== -->
+<div class="google-ads-banner">
+  <a href="#" target="_blank" rel="noopener">
+    <img src="https://tpc.googlesyndication.com/simgad/13601217351957826664" alt="Google Ads Banner" class="ads-image">
+  </a>
+</div>
+
+<style>
+.google-ads-banner {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0;
+  padding: 10px 0;
+  background: #fff;
+  border-top: 1px solid #e0e0e0;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.ads-image {
+  width: 100%;
+  max-width: 420px;
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+}
+</style>
+<div class="free-delivery" style="margin-bottom: 16px;"></div>
+<script src="js/latest.js" data-utmify-prevent-xcod-sck="" data-utmify-prevent-subids="" async="" defer=""></script>
+
+
+</body></html><!-- =============== BLOCO DE INFORMAÇÕES DO PRODUTO =============== --><!-- =============== REVIEWS SECTION (13 ITEMS) =============== -->
